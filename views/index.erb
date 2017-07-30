@@ -1,25 +1,19 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Caesar Cipher</title>
+	<title>MasterMind</title>
 	<link rel="stylesheet" href="style.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 </head>
 <body>
-	<div align="center">
-		<a id="title" href="https://en.wikipedia.org/wiki/Caesar_cipher"> Caesar Cipher </a>
-		<form>
-			<p> Enter the text you want to encrypt: </p>
-			<textarea class='input' autofocus name='text'><%= text %></textarea><br><br>
-			Enter the number of places to shift : 
-			<input type ='text' name='shift' value="<%= shift%>" pattern="[-+]*\d+" /><br><br>
-			<input type='submit' name="encrypt" value='Encrypt!' />
-			<input type='submit' name='clear' value='Clear' />
-		</form>
-		<% if !output.nil? && output.length > 0 %>
-		<p> Output :  </p>
-		<textarea class="output" readonly><%= output %></textarea>
-		<% end %>
-	</div>
+	<p> Mastermind </p>
+	
+	<form  action="codebreaker" >
+	<input  type ='submit' name='codebreaker' value ='CodeBreaker'/>
+	</form>	
+		<form  action="codemaker" >
+	<input  type ='submit' name='codemaker' value ='CodeMaker'/><br><br>
+
+
 </body>
 </html>

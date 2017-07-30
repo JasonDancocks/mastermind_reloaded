@@ -1,0 +1,31 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>MasterMind</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+</head>
+<body>
+	<p> Mastermind 
+	<form method="post" action="newGame" >
+	<input type="submit" name="newGame" value="New Game">
+	</form>
+	</p>
+
+	<form method="post" action="enterCode">
+		<input type = "text" name ="input"/>
+		<input type = "submit" name ="enterCode" value = "Enter"/>
+
+	</form>
+
+	<% if !output.nil? %>
+	<p> <%= output %> </p>
+	<% end%>
+
+
+	<% if !win_message.nil? %>
+	<p> <%= win_message %> </p>
+	<% end%>
+
+</body>
+</html>
