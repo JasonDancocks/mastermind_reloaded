@@ -22,9 +22,8 @@ get "/codemaker" do
   game = GAMES[session_id]
   game.new_game_maker
   message = "Enter code (RGYBOP) "
-  output = "output goes here"
-  win_message = "win message goes here"
-  erb :codemaker, :locals => {:message => message, :output => output, :win_message => win_message}
+  input, win_message, output = nil, nil, nil
+  erb :codemaker, :locals => {:message => message, :input => input, :output => output, :win_message => win_message}
 end
 
 post "/enterCode" do
@@ -51,10 +50,10 @@ get "/codebreaker" do
   GAMES[session_id] = Mastermind.new
   game = GAMES[session_id]
   game.new_game_breaker
-  message = "Enter row #{game.breaker.turns + 1 } (RGYBOP) "
-  output = "output goes here"
-  win_message = "win message goes here"
-  erb :codebreaker, :locals => {:message => message, :output => output,:win_message => win_message}
+  turns_left = game.breaker.max_turns - game.breaker.turns
+  message = "Enter row  (RGYBOP) "
+  input, win_message, output = nil, nil, nil
+  erb :codebreaker, :locals => {:message => message, :input => input, :output => output,:win_message => win_message, :turns_left => turns_left}
 end
 
 post "/enterGuess" do
@@ -63,13 +62,18 @@ post "/enterGuess" do
   input = get_input
   if input.length == 4 
     game.breaker.save_rows(input.split(""),game.maker.code)
-    message = "Enter row #{game.breaker.turns + 1 } (RGYBOP) "
     output = game.breaker.print_output
     game.breaker.turns += 1
+    turns_left = game.breaker.max_turns - game.breaker.turns
+    if turns_left > 0
+      message = "Enter row  (RGYBOP) "
+    else
+      message = nil
+    end
     win_message = game.breaker.check_for_win
   end
 
-  erb :codebreaker, :locals => {:message => message, :output => output,:win_message => win_message}
+  erb :codebreaker, :locals => {:message => message, :input => input, :output => output,:win_message => win_message, :turns_left => turns_left}
 end
 
 post "/newGame" do

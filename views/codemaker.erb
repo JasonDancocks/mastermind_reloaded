@@ -7,9 +7,9 @@
 </head>
 <body>
 	<p> Mastermind 
-	<form method="post" action="newGame" >
-	<input type="submit" name="newGame" value="New Game">
-	</form>
+		<form method="post" action="newGame" >
+			<input type="submit" name="newGame" value="New Game">
+		</form>
 	</p>
 
 	<form method="post" action="enterCode">
@@ -17,10 +17,16 @@
 		<input type = "submit" name ="enterCode" value = "Enter"/>
 
 	</form>
+	<% if !input.nil? %>
+	<p> <%= input %> </p>
+	<% end%>
 
 	<% if !output.nil? %>
-	<p> <%= output %> </p>
-	<% end%>
+	<% output.each do |line| %>
+	<%=line %> <br>
+	<%end%>
+	<%end%>
+
 
 
 	<% if !win_message.nil? %>

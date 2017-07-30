@@ -89,16 +89,17 @@ end
 
 def print_output
   t = 0
-  string = []
+  output_arr = []
   while t < @turns + 1
-    string << "#{@code_array[t]} #{@fb_array[t]}"
+    output_arr << "#{@code_array[t]} #{@fb_array[t]} "
     t += 1
   end
-  string
+  output_arr
 end
 
 #checks after each turn to see if all match, with different outputs depending on the player
 def check_for_win
+  turns_left = @max_turns - @turns
   if @fb_array[@turns-1].all? {|x| x =="BM"}
     if @ai
       message = "You lose! The computer cracked your code in #{@turns} attempts"
@@ -107,15 +108,18 @@ def check_for_win
     end
     @turns = @max_turns
   else
-    if @turns  == @max_turns
-      message =  "#{@max_turns - @turns } guesses remain"
+    if @turns  >= @max_turns
       if @ai
         message =  "You win! The computer failed to crack your code"
       else
         message =  "Better luck next time!"
       end
     else
-      message =  "#{@max_turns - @turns  } guesses remain"
+      if turns_left > 0
+        message =  "#{turns_left} guesses remain"
+      else
+        message = nil
+      end
     end
   end
   message

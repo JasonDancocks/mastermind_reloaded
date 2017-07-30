@@ -11,19 +11,27 @@
 	<input type="submit" name="newGame" value="New Game">
 	</form>
 	</p>
-
-
+	
+	<% if  turns_left > 0 %>
 	<form method="post" action="enterGuess">
 		<input type = "text" name ="input"/>
 		<input type = "submit" name ="enterGuess" value = "Enter"/>
+	<%end%>
 
 	</form>
+	<% if !input.nil? && input.length > 4%>
+	<p> <%= input %> </p>
+	<% end%>
+
 	<% if !message.nil? %>
-	<%= message %>
+	<p><%= message %></p>
 	<%end%>
 
 	<% if !output.nil? %>
-	<p> <%= output %> </p>
+	<% output.each do |line| %>
+	<%=line %> <br>
+	<%end%>
+
 	<% end%>
 
 
