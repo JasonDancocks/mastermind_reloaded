@@ -12,25 +12,25 @@
 		</form>
 	</p>
 
-	<form method="post" action="enterCode">
+	<form method="post" action="codemaker">
 		<input type = "text" name ="input"/>
 		<input type = "submit" name ="enterCode" value = "Enter"/>
 
 	</form>
-	<% if !input.nil? %>
-	<p> <%= input %> </p>
+	<% if !@input.nil? %>
+	<p> <%= @input %> </p>
 	<% end%>
 
-	<% if !output.nil? %>
-	<% output.each do |line| %>
+	<% if !@output.nil? %>
+	<% @output.each do |line| %>
 	<%=line %> <br>
 	<%end%>
 	<%end%>
 
 
 
-	<% if !win_message.nil? %>
-	<p> <%= win_message %> </p>
+	<% if !@win_message.nil? %>
+	<p> <%= @win_message %> </p>
 	<% end%>
 
 </body>
